@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "995640491781",
+    "project_id": "cowin-app-de8db",
+    "storage_bucket": "cowin-app-de8db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995640491781:android:c7116a8d8b93871a96416c",
+        "android_client_info": {
+          "package_name": "com.example.chatApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995640491781-vaaik5o9b3pkdlrd0nse4bshcmfc2ium.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw6jbNv0RDBVHJ3WEMdrEKuUsrFvXdbaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995640491781-vaaik5o9b3pkdlrd0nse4bshcmfc2ium.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "995640491781-dq65r90t5tdco0rhf4ag47a5v5ej9qs9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cowinApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995640491781:android:c91cc7379c45005496416c",
+        "android_client_info": {
+          "package_name": "com.example.pub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995640491781-j6n541v5q92t0dqh1qp7vhq28ds1jcm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pub",
+            "certificate_hash": "386653370e6a751449cc7d500abbe16b770b1bfa"
+          }
+        },
+        {
+          "client_id": "995640491781-vaaik5o9b3pkdlrd0nse4bshcmfc2ium.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw6jbNv0RDBVHJ3WEMdrEKuUsrFvXdbaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995640491781-vaaik5o9b3pkdlrd0nse4bshcmfc2ium.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "995640491781-dq65r90t5tdco0rhf4ag47a5v5ej9qs9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cowinApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
