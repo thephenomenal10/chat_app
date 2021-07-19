@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -13,15 +12,20 @@ class ChatScreen extends StatefulWidget {
   final String recieverEmail;
   final String recieverName;
   final String senderEmail;
+  final String senderName;
 
   const ChatScreen(
-      {Key key, this.recieverEmail, this.recieverName, this.senderEmail})
+      {Key key,
+      this.recieverEmail,
+      this.recieverName,
+      this.senderEmail,
+      this.senderName})
       : super(key: key);
 
   // const ChatScreen({Key key, this.recieverEmail}) : super(key: key);
   @override
   _ChatScreenState createState() => _ChatScreenState();
-}
+} 
 
 class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
@@ -66,22 +70,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    final fbm = FirebaseMessaging();
-    fbm.configure(
-      onMessage: (message) {
-        print(message);
-        return;
-      },
-      onLaunch: (msg) {
-        print(msg);
-        return;
-      },
-      onResume: (msg) {
-        print(msg);
-        return;
-      },
-     
-    );
     super.initState();
     getCurrentUser();
   }
@@ -209,7 +197,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       _firestore.collection("messages").add({
                         "text": message,
                         "sender": loggedInUser.email,
-                        "with": widget.recieverEmail
+                        "with": widget.recieverEmail,
+                        "withName": widget.recieverName,
+                        "senderName": widget.senderName
                       });
                     },
                     child: Text(

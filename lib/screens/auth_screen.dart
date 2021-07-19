@@ -1,5 +1,4 @@
 import 'package:chatApp/screens/home_screen.dart';
-import 'package:chatApp/screens/login_screen.dart';
 import 'package:chatApp/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +27,8 @@ class _AuthState extends State<Auth> {
   void initState() {
     super.initState();
     getAuthState();
+
+ 
   }
 
   @override

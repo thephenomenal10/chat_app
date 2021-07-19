@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'register_screen';
@@ -97,10 +98,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               await SharedPreferences.getInstance();
                           prefs.setBool("auth", true);
                           prefs.setString("email", email);
-                          await _firestore.collection("registeredUsers").add({
+                          final token = await FirebaseMessaging().getToken();
+                          await _firestore
+                              .collection("registeredUsers")
+                              .document(email)
+                              .setData({
                             "name": name,
                             "email": email,
-                            "password": password
+                            "password": password,
+                            "fcmToken": token
                           });
                           Navigator.pushReplacementNamed(
                               context, HomeScreen.id);

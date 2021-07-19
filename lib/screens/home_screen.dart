@@ -2,6 +2,7 @@ import 'package:chatApp/screens/chat_screen.dart';
 import 'package:chatApp/screens/welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final _auth = FirebaseAuth.instance;
   FirebaseUser loggedInUser;
+  String currentUserName = "";
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -62,7 +64,24 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+
     getCurrentUser();
+    final fbm = FirebaseMessaging();
+    fbm.configure(
+      onMessage: (message) {
+        print(message);
+
+        return;
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print(message);
+        return;
+      },
+      onResume: (msg) {
+        print(msg);
+        return;
+      },
+    );
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -93,13 +112,16 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           }
           final users = snapshot.data.documents;
           List<Map<String, String>> userList = [];
+          //  SharedPreferences prefs = await SharedPreferences.getInstance();
+
           for (var user in users) {
             if (loggedInUser.email != user.data["email"]) {
               final name = user.data["name"];
               final email = user.data["email"];
               userList.add({"name": name, "email": email});
-              print(name);
-              print(email);
+            } else {
+              currentUserName = user.data["name"];
+              print("currentUserName>>>>>>>>>>>>>>>>>>>>>>> $currentUserName");
             }
           }
           print(userList);
@@ -122,10 +144,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ChatScreen(
-                                            recieverEmail: userList[i]["email"],
-                                            recieverName: userList[i]["name"],
-                                            senderEmail: loggedInUser.email,
-                                          )));
+                                          recieverEmail: userList[i]["email"],
+                                          recieverName: userList[i]["name"],
+                                          senderEmail: loggedInUser.email,
+                                          senderName: currentUserName)));
                               // Navigator.pushNamed(context, ChatScreen.id,
                               //     arguments: {
                               //       "name": userList[i]["name"],

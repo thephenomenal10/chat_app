@@ -1,4 +1,3 @@
-import 'package:chatApp/screens/home_screen.dart';
 import 'package:chatApp/widgets/rounded_button.dart';
 import 'package:chatApp/screens/login_screen.dart';
 import 'package:chatApp/screens/register_screen.dart';
